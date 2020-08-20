@@ -7,20 +7,28 @@ import com.excella.flajr.domain.Flag;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FlagrClientAsyncIntTest {
-    @Test public void testFlagsReturn() {
-        FlagrClientAsync clientAsync = FlagrClientAsync.create("http://localhost:18000/api/v1");
+    @Test public void testFlagsReturn() throws ExecutionException, InterruptedException {
+        FeignFlagrAsync clientAsync = FeignFlagrAsync.create("http://localhost:18000/api/v1");
 
-        clientAsync.getAllFlags()
-            .thenAccept(listOfAllFlags -> {
-                assertThat(listOfAllFlags).isNotEmpty();
-                assertThat(listOfAllFlags)
-                    .extracting(Flag::getDescription)
-                    .contains("demo_example");
-            });
+        List<Flag> listOfAllFlags = clientAsync.getAllFlags().get();
+        assertThat(listOfAllFlags).isNotEmpty();
+        assertThat(listOfAllFlags)
+            .extracting(Flag::getDescription)
+            .contains("demo_example");
     }
+
+  @Test public void testDemoFlagReturns() throws ExecutionException, InterruptedException {
+    FeignFlagrAsync clientAsync = FeignFlagrAsync.create("http://localhost:18000/api/v1");
+    Flag flag = clientAsync.getFlag(1).get();
+    assertThat(flag).isNotNull();
+    assertThat(flag)
+        .extracting(Flag::getDescription)
+        .isEqualTo("demo_example");
+  }
 }

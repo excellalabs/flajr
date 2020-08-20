@@ -3,7 +3,7 @@ package com.excella.flajr.domain;
 public class Variant {
   private int id;
   private String key;
-  private String attachment;
+  private Object attachment;
 
   public int getId() {
     return id;
@@ -21,11 +21,11 @@ public class Variant {
     this.key = key;
   }
 
-  public String getAttachment() {
+  public Object getAttachment() {
     return attachment;
   }
 
-  public void setAttachment(String attachment) {
+  public void setAttachment(Object attachment) {
     this.attachment = attachment;
   }
 }
