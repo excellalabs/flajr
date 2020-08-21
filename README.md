@@ -18,7 +18,7 @@ if (enabled) {
   // Feature Code Here
 }
 ```
-That looks a little messy, so we've provided a simplified accessor if all you care about is the flag status:
+The return type of `getFlag` is an `Optional` because they flag may not exist in the flagr service. That looks a little messy, so we've provided a simplified accessor if all you care about is the flag status:
 ```java
 Flagr flagr = new Flagr("http://localhost:18000");
 
