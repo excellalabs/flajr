@@ -6,7 +6,7 @@
 
 #### Overview
 
-Flajr is a Java client library for [Flagr](https://checkr.github.io/flagr/), an open source feature flag service. It is built on top of the (Feign Client Library)[https://github.com/OpenFeign/feign], although that is mostly invisible to the user. 
+Flajr is a Java client library for [Flagr](https://checkr.github.io/flagr/), an open source feature flag service. It is built on top of the [Feign Client Library](https://github.com/OpenFeign/feign), although that is mostly invisible to the user. 
 
 Here's a simple way to use it:
 ```java
